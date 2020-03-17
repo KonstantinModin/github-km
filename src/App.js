@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from "react";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import ItemList from "./ItemList";
 
 import "./App.css";
 
 const GITHUB_ENDPOINT = "https://api.github.com/graphql";
-const INITIAL_TOKEN = "8f832287e60ce1df8afa487e4ce236f999c21433";
+const INITIAL_TOKEN = "289a60e7f64c36aea0522c8308ce6fe2e35bd75e";
 
 const App = () => {
     const [state, setState] = useState({
@@ -43,38 +44,40 @@ const App = () => {
         <ApolloProvider client={client}>
             <div className="App">
                 <header className="header">
-                    <h1>Fetching Github data with GraphQL</h1>
+                    <h2>Fetching Github data with GraphQL</h2>
                 </header>
                 <div className="controls">
-                    <div>
-                        <label>Enter your token:</label>
-                        <input
-                            name="token"
-                            type="text"
-                            value={token}
-                            onChange={handleInputChange}
-                        />
+                    <div className="inputs">
+                        <div>
+                            <label>Enter your token:</label>
+                            <input
+                                name="token"
+                                type="text"
+                                value={token}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
+                            <label>Enter user name:</label>
+                            <input
+                                name="user"
+                                type="text"
+                                value={user}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
+                            <label>Enter repo name:</label>
+                            <input
+                                name="repo"
+                                type="text"
+                                value={repo}
+                                onChange={handleInputChange}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <label>Enter user name:</label>
-                        <input
-                            name="user"
-                            type="text"
-                            value={user}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div>
-                        <label>Enter repo name:</label>
-                        <input
-                            name="repo"
-                            type="text"
-                            value={repo}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div>
-                        <label></label>
+
+                    <div className="buttonContainer">
                         <button
                             className="btn btn-success"
                             onClick={() => setShouldFetch(true)}
@@ -84,7 +87,30 @@ const App = () => {
                     </div>
                 </div>
                 <div className="content">
-                    {shouldFetch ? <h3>to do</h3> : <p>Enter user/repo</p>}
+                    {shouldFetch ? (
+                        <>
+                            <ItemList
+                                user={user}
+                                repo={repo}
+                                list="pullRequests"
+                                setup=""
+                            />
+                            <ItemList
+                                user={user}
+                                repo={repo}
+                                list="issues"
+                                setup=", states: CLOSED"
+                            />
+                            <ItemList
+                                user={user}
+                                repo={repo}
+                                list="issues"
+                                setup=""
+                            />
+                        </>
+                    ) : (
+                        <h3>Enter user/repo</h3>
+                    )}
                 </div>
             </div>
         </ApolloProvider>
