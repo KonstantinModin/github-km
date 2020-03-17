@@ -1,21 +1,33 @@
 import React, { useState, useMemo } from "react";
+
+//Apollo
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+
+//components
+import Header from "./Header";
+import Controls from "./Controls";
 import ItemList from "./ItemList";
 
+//CSS
 import "./App.css";
 
+// Constants
 const GITHUB_ENDPOINT = "https://api.github.com/graphql";
 const INITIAL_TOKEN = "289a60e7f64c36aea0522c8308ce6fe2e35bd75e";
 
 const App = () => {
+    //state for controlled inputs
     const [state, setState] = useState({
         token: INITIAL_TOKEN,
         user: "facebook",
         repo: "react"
     });
-    const [shouldFetch, setShouldFetch] = useState(false);
 
+    //State for fetching to prevent fetching on every key pressed
+    const [fetchState, setFetchState] = useState(state);
+
+    // Apollo client with auth token
     const client = useMemo(
         () =>
             new ApolloClient({
@@ -33,83 +45,42 @@ const App = () => {
         [state.token]
     );
 
-    const handleInputChange = e => {
-        const { name, value } = e.target;
-        setState(state => ({ ...state, [name]: value }));
-    };
-
-    const { token, user, repo } = state;
-
     return (
         <ApolloProvider client={client}>
             <div className="App">
-                <header className="header">
-                    <h2>Fetching Github data with GraphQL</h2>
-                </header>
-                <div className="controls">
-                    <div className="inputs">
-                        <div>
-                            <label>Enter your token:</label>
-                            <input
-                                name="token"
-                                type="text"
-                                value={token}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div>
-                            <label>Enter user name:</label>
-                            <input
-                                name="user"
-                                type="text"
-                                value={user}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div>
-                            <label>Enter repo name:</label>
-                            <input
-                                name="repo"
-                                type="text"
-                                value={repo}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="buttonContainer">
-                        <button
-                            className="btn btn-success"
-                            onClick={() => setShouldFetch(true)}
-                        >
-                            Search
-                        </button>
-                    </div>
-                </div>
+                <Header />
+                <Controls
+                    state={state}
+                    setState={setState}
+                    setFetchState={setFetchState}
+                />
                 <div className="content">
-                    {shouldFetch ? (
+                    {fetchState.user && fetchState.repo ? (
                         <>
                             <ItemList
-                                user={user}
-                                repo={repo}
+                                name="pullRequests"
+                                user={fetchState.user}
+                                repo={fetchState.repo}
                                 list="pullRequests"
                                 setup=""
                             />
                             <ItemList
-                                user={user}
-                                repo={repo}
+                                name="openIssues"
+                                user={fetchState.user}
+                                repo={fetchState.repo}
+                                list="issues"
+                                setup=", states: OPEN"
+                            />
+                            <ItemList
+                                name="closedIssues"
+                                user={fetchState.user}
+                                repo={fetchState.repo}
                                 list="issues"
                                 setup=", states: CLOSED"
                             />
-                            <ItemList
-                                user={user}
-                                repo={repo}
-                                list="issues"
-                                setup=""
-                            />
                         </>
                     ) : (
-                        <h3>Enter user/repo</h3>
+                        <h3>Enter user and repo</h3>
                     )}
                 </div>
             </div>
