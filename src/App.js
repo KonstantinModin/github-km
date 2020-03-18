@@ -8,15 +8,15 @@ import { ApolloProvider } from "@apollo/react-hooks";
 //components
 import Header from "./Header";
 import Controls from "./Controls";
-import ItemList from "./ItemList";
 import ItemPage from "./ItemPage";
+import AppContent from "./AppContent";
 
 //CSS
 import "./App.css";
 
 // Constants
 const GITHUB_ENDPOINT = "https://api.github.com/graphql";
-const INITIAL_TOKEN = "";
+const INITIAL_TOKEN = "b04c30525b2f775f05be890a7505f5b023d51693";
 
 const App = () => {
     //state for controlled inputs
@@ -37,14 +37,14 @@ const App = () => {
                 request: operation => {
                     operation.setContext({
                         headers: {
-                            authorization: state.token
-                                ? `Bearer ${state.token}`
+                            authorization: fetchState.token
+                                ? `Bearer ${fetchState.token}`
                                 : ""
                         }
                     });
                 }
             }),
-        [state.token]
+        [fetchState.token]
     );
 
     return (
@@ -57,37 +57,7 @@ const App = () => {
                         setState={setState}
                         setFetchState={setFetchState}
                     />
-                    <div className="content">
-                        {fetchState.user &&
-                        fetchState.repo &&
-                        fetchState.token ? (
-                            <>
-                                <ItemList
-                                    name="pullRequests"
-                                    user={fetchState.user}
-                                    repo={fetchState.repo}
-                                    list="pullRequests"
-                                    setup=""
-                                />
-                                <ItemList
-                                    name="openIssues"
-                                    user={fetchState.user}
-                                    repo={fetchState.repo}
-                                    list="issues"
-                                    setup=", states: OPEN"
-                                />
-                                <ItemList
-                                    name="closedIssues"
-                                    user={fetchState.user}
-                                    repo={fetchState.repo}
-                                    list="issues"
-                                    setup=", states: CLOSED"
-                                />
-                            </>
-                        ) : (
-                            <h3>Enter token, user name and repository </h3>
-                        )}
-                    </div>
+                    <AppContent state={fetchState} />
                 </Route>
                 <Route
                     exact

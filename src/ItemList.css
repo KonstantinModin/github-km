@@ -1,44 +1,56 @@
-.App .content .itemList {
+.App .content .bottom .itemList {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: calc(100vw / 3);
-    margin: 2px;
-    /* border: 1px solid grey; */
-    box-shadow: 4px 4px 10px rgb(218, 218, 218);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 98%;
+    margin: 0.5rem;
     border-radius: 5px;
 }
 
-.App .content .itemList .item {
+.App .content .bottom .itemList .item {
     border-radius: 5px;
-    /* border: 1px solid grey; */
     box-shadow: 4px 4px 10px rgb(218, 218, 218);
-    margin: 1rem;
-    padding: 1px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 31%;
     transition: 0.1s ease-in-out all;
 }
 
-.App .content .itemList h5 {
+.App .content .bottom .itemList h5 {
     text-transform: capitalize;
 }
 
-.App .content .itemList .item .description {
+.App .content .bottom .itemList .item .description {
     font-size: 0.8rem;
 }
 
-.App .content .itemList .item .title span {
+.App .content .bottom .itemList .item .title span {
     font-size: 0.9rem;
     font-weight: bold;
 }
 
-.App .content .itemList .item:hover {
+.App .content .bottom .itemList .item:hover {
     background-color: rgb(220, 255, 200);
     transform: scale(1.03);
     cursor: pointer;
 }
 
+@media only screen and (min-width: 701px) and (max-width: 1000px) {
+    .App .content .bottom .itemList .item {
+        width: 47%;
+    }
+}
+
 @media only screen and (max-width: 700px) {
-    .App .content .itemList {
+    .App .content .bottom .itemList {
+        width: 98%;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .App .content .bottom .itemList .item {
         width: 98%;
     }
 }

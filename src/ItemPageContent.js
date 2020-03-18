@@ -1,7 +1,9 @@
 import React from "react";
 import moment from "moment";
-import Comments from "./Comments";
 import ReactMarkdown from "react-markdown/with-html";
+
+// Components
+import Comments from "./Comments";
 
 //CSS
 import "./ItemPageContent.css";
@@ -36,7 +38,7 @@ const ItemPageContent = ({ data, list, user, repo }) => {
             <div className="body border">
                 <ReactMarkdown source={bodyHTML} escapeHtml={false} />
             </div>
-            <Comments comments={comments.nodes.reverse()} />
+            <Comments comments={comments.nodes} />
         </>
     );
 };

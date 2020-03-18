@@ -10,13 +10,33 @@
 
 .App .content {
     display: flex;
+    flex-direction: column;
+}
+
+.App .content .top {
+    display: flex;
     flex-direction: row;
-    height: 100%;
+}
+
+.App .content .top button {
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
+    box-shadow: 4px 4px 10px rgb(218, 218, 218);
 }
 
 @media only screen and (max-width: 700px) {
     .App .content {
         flex-direction: column;
         align-items: center;
+    }
+
+    .App .header h3 {
+        font-size: 1.4rem;
+    }
+
+    .App .content .top button {
+        padding: 0.5rem;
+        font-size: 1rem;
+        margin: 0.5rem;
     }
 }

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown/with-html";
 import moment from "moment";
+
+//CSS
 import "./Comments.css";
 
 const Comments = ({ comments }) => {

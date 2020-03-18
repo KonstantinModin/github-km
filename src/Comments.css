@@ -1,7 +1,3 @@
-.App .itemPage .comments input {
-    margin: 0 1rem;
-}
-
 .App .itemPage .comments .filter {
     display: flex;
     flex-direction: row;
@@ -13,6 +9,7 @@
 
 .App .itemPage .comments .filter input {
     width: 30rem;
+    margin: 0 1rem;
 }
 
 .App .itemPage .comments .comment {
@@ -30,4 +27,32 @@
 
 .App .itemPage .comments .comment .titleComment > * {
     margin: 0.5rem 1rem;
+}
+
+@media only screen and (max-width: 700px) {
+    .App .itemPage .comments .filter {
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .App .itemPage .comments .filter input {
+        margin: 0.5rem;
+        width: 95%;
+    }
+
+    .App .itemPage .comments .filter button {
+        margin: 0.5rem;
+        width: 95%;
+    }
+
+    .App .itemPage .comments .filter span {
+        margin: 0.5rem;
+    }
+
+    .App .itemPage .comments .comment {
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
 }
