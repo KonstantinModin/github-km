@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown/with-html";
 
 // Components
 import Comments from "./Comments";
+import ErrorBoundary from "./ErrorBoundary";
 
 //CSS
 import "./ItemPageContent.css";
@@ -36,7 +37,9 @@ const ItemPageContent = ({ data, list, user, repo }) => {
                 </div>
             </div>
             <div className="body border">
-                <ReactMarkdown source={bodyHTML} escapeHtml={false} />
+                <ErrorBoundary>
+                    <ReactMarkdown source={bodyHTML} escapeHtml={false} />
+                </ErrorBoundary>
             </div>
             <Comments comments={comments.nodes} />
         </>

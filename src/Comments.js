@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown/with-html";
+import ErrorBoundary from "./ErrorBoundary";
 import moment from "moment";
 
 //CSS
@@ -12,6 +13,9 @@ const Comments = ({ comments }) => {
     const handleInputChange = ({ target: { value } }) => {
         setInputValue(value);
     };
+
+    // Function to convert date to milliseconds
+    const getMilSec = t => new Date(t).getTime();
 
     return (
         <div className="comments border">
@@ -39,8 +43,12 @@ const Comments = ({ comments }) => {
                             .toLowerCase()
                             .includes(inputValue.trim().toLowerCase())
                     )
+                    .sort(
+                        ({ publishedAt: a }, { publishedAt: b }) =>
+                            getMilSec(b) - getMilSec(a)
+                    )
                     .map(({ author, bodyHTML, publishedAt, id }) => {
-                        // update bodyHTML to prevent console Warnings
+                        // update bodyHTML to prevent react-mardown Warnings
                         const updatedBodyHTML = bodyHTML.replace(/\n*/g, "");
                         return (
                             <div className="comment" key={id}>
@@ -51,11 +59,12 @@ const Comments = ({ comments }) => {
                                         {moment(publishedAt).fromNow()}
                                     </h6>
                                 </div>
-
-                                <ReactMarkdown
-                                    source={updatedBodyHTML}
-                                    escapeHtml={false}
-                                />
+                                <ErrorBoundary>
+                                    <ReactMarkdown
+                                        source={updatedBodyHTML}
+                                        escapeHtml={false}
+                                    />
+                                </ErrorBoundary>
                             </div>
                         );
                     })

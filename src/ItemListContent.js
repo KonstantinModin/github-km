@@ -5,10 +5,12 @@ import { useHistory } from "react-router-dom";
 const ItemListContent = ({ data, list, user, repo }) => {
     const history = useHistory();
 
+    //Go to Item Page
     const handleItemClick = number => {
         history.push("/item", [{ number, user, repo, list }]);
     };
 
+    // Function to convert date to milliseconds
     const getMilSec = t => new Date(t).getTime();
 
     return (

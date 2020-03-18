@@ -1,13 +1,19 @@
 import React from "react";
+
+// Redux
 import { connect } from "react-redux";
-import { setCurrentType } from "./redux/actions";
+import { setCurrentTab } from "./redux/actions";
+
+// Components
 import ItemList from "./ItemList";
+import ErrorBoundary from "./ErrorBoundary";
 
 const AppContent = ({
     state: { user, repo, token },
-    setCurrentType,
+    setCurrentTab,
     currentTab
 }) => {
+    // Array for lists render
     const tabs = [
         {
             name: "pullRequests",
@@ -29,10 +35,9 @@ const AppContent = ({
         }
     ];
 
-    // Tab Navigation
-
+    // Tab Navigation - Redux
     const tabClickHandler = ({ target }) => {
-        setCurrentType(target.dataset.id);
+        setCurrentTab(target.dataset.id);
     };
 
     return (
@@ -58,13 +63,15 @@ const AppContent = ({
                         })}
                     </div>
                     <div className="bottom">
-                        <ItemList
-                            name={tabs[currentTab].name}
-                            user={user}
-                            repo={repo}
-                            list={tabs[currentTab].list}
-                            setup={tabs[currentTab].setup}
-                        />
+                        <ErrorBoundary>
+                            <ItemList
+                                name={tabs[currentTab].name}
+                                user={user}
+                                repo={repo}
+                                list={tabs[currentTab].list}
+                                setup={tabs[currentTab].setup}
+                            />
+                        </ErrorBoundary>
                     </div>
                 </>
             ) : (
@@ -80,4 +87,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { setCurrentType })(AppContent);
+export default connect(mapStateToProps, { setCurrentTab })(AppContent);

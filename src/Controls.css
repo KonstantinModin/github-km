@@ -16,7 +16,7 @@
 }
 
 .App .controls .inputs {
-    width: 37rem;
+    width: 31rem;
 }
 
 .App .controls .inputs div {
@@ -29,7 +29,7 @@
 }
 
 .App .controls .inputs div input {
-    width: 65%;
+    width: 20rem;
 }
 
 @media only screen and (max-width: 700px) {

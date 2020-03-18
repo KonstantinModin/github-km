@@ -2,6 +2,13 @@ import React from "react";
 import "./Controls.css";
 
 const Controls = ({ state, setState, setFetchState }) => {
+    //Render inputs from array
+    const inputs = [
+        { name: "token", type: "password", label: "your token:" },
+        { name: "user", type: "text", label: "user name:" },
+        { name: "repo", type: "text", label: "repo name:" }
+    ];
+
     // input change handler
     const handleInputChange = e => {
         const { name, value } = e.target;
@@ -13,38 +20,20 @@ const Controls = ({ state, setState, setFetchState }) => {
         setFetchState(state);
     };
 
-    const { token, user, repo } = state;
-
     return (
         <div className="controls">
             <div className="inputs">
-                <div>
-                    <label>Enter your token:</label>
-                    <input
-                        name="token"
-                        type="password"
-                        value={token}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Enter user name:</label>
-                    <input
-                        name="user"
-                        type="text"
-                        value={user}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Enter repo name:</label>
-                    <input
-                        name="repo"
-                        type="text"
-                        value={repo}
-                        onChange={handleInputChange}
-                    />
-                </div>
+                {inputs.map(({ name, type, label }) => (
+                    <div key={name}>
+                        <label>{`Enter ${label}`}</label>
+                        <input
+                            name={name}
+                            type={type}
+                            value={state[name]}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                ))}
             </div>
             <div className="buttonContainer">
                 <button

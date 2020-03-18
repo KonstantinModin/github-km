@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import ErrorBoundary from "./ErrorBoundary";
 
 // Redux
 import { createStore } from "redux";
@@ -13,9 +14,11 @@ const store = createStore(reducer);
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <ErrorBoundary>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ErrorBoundary>
     </Provider>,
     document.getElementById("root")
 );

@@ -1,22 +1,23 @@
 import React, { useState, useMemo } from "react";
 import { Route, Redirect } from "react-router-dom";
 
-//Apollo
+// Apollo
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 
-//components
+// Components
 import Header from "./Header";
 import Controls from "./Controls";
 import ItemPage from "./ItemPage";
 import AppContent from "./AppContent";
+import ErrorBoundary from "./ErrorBoundary";
 
 //CSS
 import "./App.css";
 
 // Constants
 const GITHUB_ENDPOINT = "https://api.github.com/graphql";
-const INITIAL_TOKEN = "c8ba49b9e4ae843bcd96548d708141506e7d3000";
+const INITIAL_TOKEN = "";
 
 const App = () => {
     //state for controlled inputs
@@ -62,7 +63,11 @@ const App = () => {
                 <Route
                     exact
                     path="/item"
-                    render={({ history }) => <ItemPage history={history} />}
+                    render={({ history }) => (
+                        <ErrorBoundary>
+                            <ItemPage history={history} />
+                        </ErrorBoundary>
+                    )}
                 />
                 <Redirect to="/" />
             </div>
