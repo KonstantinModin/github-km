@@ -16,7 +16,7 @@ import "./App.css";
 
 // Constants
 const GITHUB_ENDPOINT = "https://api.github.com/graphql";
-const INITIAL_TOKEN = "b04c30525b2f775f05be890a7505f5b023d51693";
+const INITIAL_TOKEN = "c8ba49b9e4ae843bcd96548d708141506e7d3000";
 
 const App = () => {
     //state for controlled inputs

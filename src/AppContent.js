@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { setCurrentType } from "./redux/actions";
 import ItemList from "./ItemList";
 
-const AppContent = ({ state: { user, repo, token } }) => {
+const AppContent = ({
+    state: { user, repo, token },
+    setCurrentType,
+    currentTab
+}) => {
     const tabs = [
         {
             name: "pullRequests",
@@ -24,9 +30,9 @@ const AppContent = ({ state: { user, repo, token } }) => {
     ];
 
     // Tab Navigation
-    const [currentTab, setCurrentTab] = useState("0");
+
     const tabClickHandler = ({ target }) => {
-        setCurrentTab(target.dataset.id);
+        setCurrentType(target.dataset.id);
     };
 
     return (
@@ -68,4 +74,10 @@ const AppContent = ({ state: { user, repo, token } }) => {
     );
 };
 
-export default AppContent;
+const mapStateToProps = state => {
+    return {
+        currentTab: state.currentTab
+    };
+};
+
+export default connect(mapStateToProps, { setCurrentType })(AppContent);
