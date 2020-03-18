@@ -1,4 +1,5 @@
 import React from "react";
+import "./Controls.css";
 
 const Controls = ({ state, setState, setFetchState }) => {
     // input change handler

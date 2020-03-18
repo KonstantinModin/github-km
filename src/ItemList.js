@@ -6,6 +6,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import ErrorIndicator from "./ErrorIndicator";
 
+import "./ItemList.css";
+
 const ItemList = ({ user, repo, list, setup }) => {
     const repoQuery = gql`
         query Repo($owner: String!, $name: String!) {

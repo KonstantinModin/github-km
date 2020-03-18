@@ -1,0 +1,53 @@
+.App .controls {
+    display: flex;
+    flex-direction: row;
+}
+
+.App .controls .buttonContainer {
+    display: flex;
+    align-items: center;
+}
+
+.App .controls .buttonContainer button {
+    padding: 1rem 2rem;
+    margin: 0.5rem;
+    box-shadow: 4px 4px 10px rgb(218, 218, 218);
+}
+
+.App .controls .inputs {
+    width: 37rem;
+}
+
+.App .controls .inputs div {
+    margin: 0.2rem 0;
+}
+
+.App .controls .inputs div label {
+    margin: 0 1rem;
+    width: 8rem;
+}
+
+.App .controls .inputs div input {
+    width: 65%;
+}
+
+@media only screen and (max-width: 700px) {
+    .App .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .App .controls .inputs {
+        width: 98%;
+    }
+
+    .App .controls .inputs div {
+        display: flex;
+        flex-direction: column;
+        margin: 0.2rem 0;
+    }
+
+    .App .controls .inputs div input {
+        width: 98%;
+    }
+}

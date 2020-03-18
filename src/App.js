@@ -92,9 +92,7 @@ const App = () => {
                 <Route
                     exact
                     path="/item"
-                    render={({ history, match }) => (
-                        <ItemPage history={history} match={match} />
-                    )}
+                    render={({ history }) => <ItemPage history={history} />}
                 />
                 <Redirect to="/" />
             </div>

@@ -8,102 +8,15 @@
     text-align: center;
 }
 
-.App .controls {
-    display: flex;
-    flex-direction: row;
-}
-
-.App .controls .buttonContainer {
-    display: flex;
-    align-items: center;
-}
-
-.App .controls .buttonContainer button {
-    padding: 1rem 2rem;
-    margin: 0.5rem;
-}
-
-.App .controls .inputs {
-    width: 37rem;
-}
-
-.App .controls .inputs div {
-    margin: 0.2rem 0;
-}
-
-.App .controls .inputs div label {
-    margin: 0 1rem;
-    width: 8rem;
-}
-
-.App .controls .inputs div input {
-    width: 65%;
-}
-
 .App .content {
     display: flex;
     flex-direction: row;
     height: 100%;
 }
 
-.App .content .itemList {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: calc(100vw / 3);
-    margin: 2px;
-    border: 1px solid grey;
-    border-radius: 5px;
-}
-
-.App .content .itemList .item {
-    border-radius: 5px;
-    border: 1px solid grey;
-    margin: 1px;
-    padding: 1px;
-    transition: 0.1 ease-in-out all;
-}
-
-.App .content .itemList .item .description {
-    font-size: 0.8rem;
-}
-
-.App .content .itemList .item .title span {
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.App .content .itemList .item:hover {
-    background-color: rgb(220, 255, 200);
-    cursor: pointer;
-}
-
 @media only screen and (max-width: 700px) {
-    .App .controls {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .App .content {
         flex-direction: column;
         align-items: center;
-    }
-
-    .App .content .itemList {
-        width: 98%;
-    }
-
-    .App .controls .inputs {
-        width: 98%;
-    }
-
-    .App .controls .inputs div {
-        display: flex;
-        flex-direction: column;
-        margin: 0.2rem 0;
-    }
-
-    .App .controls .inputs div input {
-        width: 98%;
     }
 }
