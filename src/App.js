@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Route, Redirect } from "react-router-dom";
 
 //Apollo
 import ApolloClient from "apollo-boost";
@@ -8,13 +9,14 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import Header from "./Header";
 import Controls from "./Controls";
 import ItemList from "./ItemList";
+import ItemPage from "./ItemPage";
 
 //CSS
 import "./App.css";
 
 // Constants
 const GITHUB_ENDPOINT = "https://api.github.com/graphql";
-const INITIAL_TOKEN = "289a60e7f64c36aea0522c8308ce6fe2e35bd75e";
+const INITIAL_TOKEN = "";
 
 const App = () => {
     //state for controlled inputs
@@ -49,40 +51,52 @@ const App = () => {
         <ApolloProvider client={client}>
             <div className="App">
                 <Header />
-                <Controls
-                    state={state}
-                    setState={setState}
-                    setFetchState={setFetchState}
-                />
-                <div className="content">
-                    {fetchState.user && fetchState.repo ? (
-                        <>
-                            <ItemList
-                                name="pullRequests"
-                                user={fetchState.user}
-                                repo={fetchState.repo}
-                                list="pullRequests"
-                                setup=""
-                            />
-                            <ItemList
-                                name="openIssues"
-                                user={fetchState.user}
-                                repo={fetchState.repo}
-                                list="issues"
-                                setup=", states: OPEN"
-                            />
-                            <ItemList
-                                name="closedIssues"
-                                user={fetchState.user}
-                                repo={fetchState.repo}
-                                list="issues"
-                                setup=", states: CLOSED"
-                            />
-                        </>
-                    ) : (
-                        <h3>Enter user and repo</h3>
+                <Route exact path="/">
+                    <Controls
+                        state={state}
+                        setState={setState}
+                        setFetchState={setFetchState}
+                    />
+                    <div className="content">
+                        {fetchState.user &&
+                        fetchState.repo &&
+                        fetchState.token ? (
+                            <>
+                                <ItemList
+                                    name="pullRequests"
+                                    user={fetchState.user}
+                                    repo={fetchState.repo}
+                                    list="pullRequests"
+                                    setup=""
+                                />
+                                <ItemList
+                                    name="openIssues"
+                                    user={fetchState.user}
+                                    repo={fetchState.repo}
+                                    list="issues"
+                                    setup=", states: OPEN"
+                                />
+                                <ItemList
+                                    name="closedIssues"
+                                    user={fetchState.user}
+                                    repo={fetchState.repo}
+                                    list="issues"
+                                    setup=", states: CLOSED"
+                                />
+                            </>
+                        ) : (
+                            <h3>Enter token, user name and repository </h3>
+                        )}
+                    </div>
+                </Route>
+                <Route
+                    exact
+                    path="/item"
+                    render={({ history, match }) => (
+                        <ItemPage history={history} match={match} />
                     )}
-                </div>
+                />
+                <Redirect to="/" />
             </div>
         </ApolloProvider>
     );

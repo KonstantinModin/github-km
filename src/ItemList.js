@@ -1,20 +1,25 @@
 import React from "react";
+import Spinner from "./Spinner";
+import { useHistory } from "react-router-dom";
+
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import ErrorIndicator from "./ErrorIndicator";
 
 const ItemList = ({ user, repo, list, setup }) => {
     const repoQuery = gql`
         query Repo($owner: String!, $name: String!) {
             repository(owner: $owner, name: $name) {
-                ${list}(last: 10${setup}) {  
+                ${list}(last: 9${setup}) {  
                     nodes {
+                        number
                         author {
                             login
                         }                        
                         id
                         title
-                        publishedAt
-                    }                            
+                        publishedAt                                                                      
+                    }
                 }
             }
         }
@@ -24,25 +29,32 @@ const ItemList = ({ user, repo, list, setup }) => {
         variables: { owner: user, name: repo }
     });
 
+    const history = useHistory();
+
+    const handleItemClick = number => {
+        history.push("/item", [{ number, user, repo, list }]);
+    };
+
     const content = loading ? (
-        <p>Loading...</p>
+        <Spinner />
     ) : error ? (
-        <>
-            <h3>Something went wrong </h3>
-            <h5>{error.message}</h5>
-        </>
+        <ErrorIndicator error={error} />
     ) : (
         <div>
             {data.repository[list].nodes.map(
-                ({ id, title, author, publishedAt }) => {
+                ({ id, title, author, publishedAt, number }) => {
                     return (
-                        <div className="item" key={id}>
+                        <div
+                            className="item"
+                            key={id}
+                            onClick={() => handleItemClick(number)}
+                        >
                             <div className="title">
                                 Title: <span>{title}</span>
                             </div>
                             <div className="description">
                                 Author: {author.login} Published at:&nbsp;
-                                {publishedAt.toLocaleString()}
+                                {publishedAt}
                             </div>
                         </div>
                     );
