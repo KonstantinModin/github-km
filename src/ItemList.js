@@ -1,18 +1,23 @@
 import React from "react";
-import Spinner from "./Spinner";
+import moment from "moment";
 import { useHistory } from "react-router-dom";
 
+// Apollo
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import ErrorIndicator from "./ErrorIndicator";
 
+// Components
+import ErrorIndicator from "./ErrorIndicator";
+import Spinner from "./Spinner";
+
+// CSS
 import "./ItemList.css";
 
 const ItemList = ({ user, repo, list, setup }) => {
     const repoQuery = gql`
         query Repo($owner: String!, $name: String!) {
             repository(owner: $owner, name: $name) {
-                ${list}(last: 9${setup}) {  
+                ${list}(last: 9${setup}, orderBy: { field: CREATED_AT, direction: ASC }) {  
                     nodes {
                         number
                         author {
@@ -20,7 +25,7 @@ const ItemList = ({ user, repo, list, setup }) => {
                         }                        
                         id
                         title
-                        publishedAt                                                                      
+                        publishedAt                                      
                     }
                 }
             }
@@ -55,8 +60,8 @@ const ItemList = ({ user, repo, list, setup }) => {
                                 Title: <span>{title}</span>
                             </div>
                             <div className="description">
-                                Author: {author.login} Published at:&nbsp;
-                                {publishedAt}
+                                Author: {author.login} Published:{" "}
+                                {moment(publishedAt).fromNow()}
                             </div>
                         </div>
                     );

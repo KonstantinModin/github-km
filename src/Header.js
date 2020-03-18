@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
     return (
         <header className="header">
-            <h2>Fetching Github data with GraphQL</h2>
+            <h3>Fetching Github data with GraphQL - Konstantin Modin</h3>
         </header>
     );
 };

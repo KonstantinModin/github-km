@@ -1,6 +1,7 @@
 .App .controls {
     display: flex;
     flex-direction: row;
+    margin-bottom: 0.5rem;
 }
 
 .App .controls .buttonContainer {

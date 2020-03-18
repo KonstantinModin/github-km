@@ -19,14 +19,12 @@ const ItemPage = ({ history }) => {
         query itemQuery($owner: String!, $name: String!, $node_number:Int!) {
             repository(owner: $owner, name: $name) {
                 ${listSingle}(number: $node_number) {                    
-                    id
                     author {
                         login
                     }
                     title
                     state
-                    bodyHTML
-                    closed                         
+                    bodyHTML                                                             
                     publishedAt
                     createdAt
                     comments(last:20) {
@@ -35,7 +33,8 @@ const ItemPage = ({ history }) => {
                             author {
                                 login
                             }
-                            bodyHTML
+                            bodyHTML                            
+                            bodyText
                             publishedAt
                         }
                     }                                              

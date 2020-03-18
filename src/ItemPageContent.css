@@ -21,10 +21,5 @@
     margin: 1rem 0;
     padding: 1rem;
     box-shadow: 5px 5px 15px rgb(218, 218, 218);
-}
-
-.App .itemPage .comments .comment {
-    box-shadow: 5px 5px 15px rgb(218, 218, 218);
-    margin: 1rem;
-    padding: 1rem;
+    /* overflow-x: scroll; */
 }

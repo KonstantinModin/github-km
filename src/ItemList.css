@@ -15,7 +15,11 @@
     box-shadow: 4px 4px 10px rgb(218, 218, 218);
     margin: 1rem;
     padding: 1px;
-    transition: 0.1 ease-in-out all;
+    transition: 0.1s ease-in-out all;
+}
+
+.App .content .itemList h5 {
+    text-transform: capitalize;
 }
 
 .App .content .itemList .item .description {
@@ -29,6 +33,7 @@
 
 .App .content .itemList .item:hover {
     background-color: rgb(220, 255, 200);
+    transform: scale(1.03);
     cursor: pointer;
 }
 

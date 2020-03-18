@@ -1,0 +1,33 @@
+.App .itemPage .comments input {
+    margin: 0 1rem;
+}
+
+.App .itemPage .comments .filter {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    box-shadow: 5px 5px 15px rgb(218, 218, 218);
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.App .itemPage .comments .filter input {
+    width: 30rem;
+}
+
+.App .itemPage .comments .comment {
+    box-shadow: 5px 5px 15px rgb(218, 218, 218);
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.App .itemPage .comments .comment .titleComment {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    background-color: rgb(238, 255, 203);
+}
+
+.App .itemPage .comments .comment .titleComment > * {
+    margin: 0.5rem 1rem;
+}
