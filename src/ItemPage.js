@@ -23,8 +23,10 @@ const ItemPage = ({ history }) => {
                 ${listSingle}(number: $node_number) {                    
                     author {
                         login
+                        avatarUrl                       
                     }
                     title
+                    number
                     state
                     bodyHTML                                                             
                     publishedAt
@@ -34,6 +36,7 @@ const ItemPage = ({ history }) => {
                             id
                             author {
                                 login
+                                avatarUrl
                             }
                             bodyHTML                            
                             bodyText

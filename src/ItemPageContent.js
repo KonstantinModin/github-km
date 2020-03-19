@@ -13,6 +13,7 @@ const ItemPageContent = ({ data, list, user, repo }) => {
     const {
         author,
         title,
+        number,
         state,
         bodyHTML,
         publishedAt,
@@ -29,14 +30,20 @@ const ItemPageContent = ({ data, list, user, repo }) => {
                 </div>
                 <div className="columnRight">
                     <h4>{list}</h4>
+                    <div>#{number}</div>
                     <h3>{title}</h3>
-                    <div>Author: {author.login}</div>
                     <div>State: {state}</div>
                     <div>Published: {moment(publishedAt).fromNow()}</div>
                     <div>Created: {moment(createdAt).fromNow()}</div>
+                    <div>Comments: {comments.nodes.length}</div>
                 </div>
             </div>
             <div className="body border">
+                <div className="titleBody">
+                    <img src={author.avatarUrl} alt="item author" />
+                    <h5>Author: {author.login}</h5>
+                    <h6>Published: {moment(publishedAt).fromNow()}</h6>
+                </div>
                 <ErrorBoundary>
                     <ReactMarkdown source={bodyHTML} escapeHtml={false} />
                 </ErrorBoundary>

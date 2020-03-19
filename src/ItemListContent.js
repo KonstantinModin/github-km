@@ -16,6 +16,7 @@ const ItemListContent = ({ data, list, user, repo }) => {
     return (
         <>
             {data
+                // sort to show last items first
                 .sort(
                     (a, b) =>
                         getMilSec(b.publishedAt) - getMilSec(a.publishedAt)
@@ -31,8 +32,11 @@ const ItemListContent = ({ data, list, user, repo }) => {
                                 Title: <span>{title}</span>
                             </div>
                             <div className="description">
-                                Author: {author.login} Published:{" "}
-                                {moment(publishedAt).fromNow()}
+                                <span>#{number}</span>
+                                <span>Author: {author.login}</span>
+                                <span>
+                                    Published: {moment(publishedAt).fromNow()}
+                                </span>
                             </div>
                         </div>
                     );

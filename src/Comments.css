@@ -21,12 +21,17 @@
 .App .itemPage .comments .comment .titleComment {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     background-color: rgb(238, 255, 203);
 }
 
+.App .itemPage .comments .comment .titleComment img {
+    width: 2.5rem;
+    border-radius: 5px;
+}
+
 .App .itemPage .comments .comment .titleComment > * {
-    margin: 0.5rem 1rem;
+    margin: 0.5rem;
 }
 
 @media only screen and (max-width: 700px) {

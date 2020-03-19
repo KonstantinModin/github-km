@@ -1,19 +1,35 @@
 .App .itemPage .title {
     display: flex;
     flex-direction: row;
-    background-color: rgb(238, 255, 203);
+    background-color: rgb(221, 255, 154);
 }
 
 .App .itemPage .title .columnLeft {
     display: flex;
     width: 18rem;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0.5rem;
 }
 
 .App .itemPage .title .columnRight h4 {
     text-transform: capitalize;
+}
+
+.App .itemPage .body .titleBody {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(238, 255, 203);
+}
+
+.App .itemPage .body .titleBody img {
+    width: 2.5rem;
+    border-radius: 5px;
+}
+
+.App .itemPage .body .titleBody > * {
+    margin: 0.5rem;
 }
 
 .App .itemPage .border {

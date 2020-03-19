@@ -43,16 +43,21 @@ const Comments = ({ comments }) => {
                             .toLowerCase()
                             .includes(inputValue.trim().toLowerCase())
                     )
+                    // sort to show last comments first
                     .sort(
                         ({ publishedAt: a }, { publishedAt: b }) =>
                             getMilSec(b) - getMilSec(a)
                     )
                     .map(({ author, bodyHTML, publishedAt, id }) => {
-                        // update bodyHTML to prevent react-mardown Warnings
+                        // update bodyHTML to prevent react-mardown warnings
                         const updatedBodyHTML = bodyHTML.replace(/\n*/g, "");
                         return (
                             <div className="comment" key={id}>
                                 <div className="titleComment">
+                                    <img
+                                        src={author.avatarUrl}
+                                        alt="item author"
+                                    />
                                     <h5>Author: {author.login}</h5>
                                     <h6>
                                         Published:{" "}

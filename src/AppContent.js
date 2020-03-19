@@ -13,7 +13,7 @@ const AppContent = ({
     setCurrentTab,
     currentTab
 }) => {
-    // Array for lists render
+    // Array for itemLists render
     const tabs = [
         {
             name: "pullRequests",
