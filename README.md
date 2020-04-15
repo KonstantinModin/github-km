@@ -1,4 +1,4 @@
-#Fetching Github data with GraphQL
+# Fetching Github data with GraphQL
 
 ## Description
 

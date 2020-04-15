@@ -23,8 +23,8 @@ const App = () => {
     //state for controlled inputs
     const [state, setState] = useState({
         token: INITIAL_TOKEN,
-        user: "facebook",
-        repo: "react"
+        user: "",
+        repo: ""
     });
 
     //State for fetching to prevent fetching on every key pressed
