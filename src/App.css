@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.App .header h3 {
+    color: rgb(184, 36, 36);
+}
+
 .App .content {
     display: flex;
     flex-direction: column;
