@@ -27,7 +27,7 @@
 
 .App .content .bottom .itemList .item .description {
     font-size: 0.8rem;
-    background-color: rgba(65, 51, 155, 0.28);
+    background-color: rgba(60, 155, 51, 0.28);
     border-radius: 0.2rem;
     padding-left: 0.5rem;
 }
@@ -38,8 +38,8 @@
 
 .App .content .bottom .itemList .item .title span {
     font-size: 0.9rem;
-    font-weight: bold;
-    color: rgb(43, 43, 173);
+    font-weight: 500;
+    color: rgb(23, 28, 102);
     text-shadow: 1px 1px 5px grey;
 }
 
